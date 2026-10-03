@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import { browserMaskModule, detect } from "../src/mask.ts";
 
 /** The message the page's "Try an example" button fills in. Keep in step with public/index.html. */
-export const EXAMPLE = "Name: Rohan Mehta\nEmail: rohan.mehta@example.com\nPhone: +91 98765 43210\nPAN: ABCPM1234K\nAadhaar: 2345 6789 0123\nBank account: 123456789012\nIFSC: ABCD0001234\n\nPlease write a short, polite note asking the applicant to send the last three salary slips for home loan application HL-2041 (INR 12,00,000).";
+export const EXAMPLE = "Dear Mr Rohan Mehta,\nYour EMI auto-debit of INR 18,450 for home loan HL-2041 from account 123456789012 (IFSC ABCD0001234) did not go through on 28 September. Please reply to confirm a new date.\nLoans Desk\n\nMy details for the reply:\nPAN: ABCPM1234K\nPhone: +91 98765 43210\nEmail: rohan.mehta@example.com\n\nWrite a short, polite reply to my bank. Quote my details and ask them to retry the debit on 5 October.";
 
 async function load() {
   return import("data:text/javascript;base64," + Buffer.from(browserMaskModule()).toString("base64"));
@@ -25,7 +25,7 @@ describe("the masking module", () => {
   it("the page's example message is fully masked", async () => {
     const m = await load();
     const r = m.maskText(EXAMPLE);
-    for (const secret of ["Rohan Mehta", "rohan.mehta@example.com", "98765 43210", "ABCPM1234K", "2345 6789 0123", "123456789012", "ABCD0001234"]) {
+    for (const secret of ["Rohan Mehta", "rohan.mehta@example.com", "98765 43210", "ABCPM1234K", "123456789012", "ABCD0001234"]) {
       assert.ok(!r.masked.includes(secret), `${secret} is masked`);
     }
   });

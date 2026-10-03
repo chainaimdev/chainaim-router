@@ -187,7 +187,7 @@ const $ = (id) => document.getElementById(id);
 const el = (tag, props = {}, ...kids) => { const e = Object.assign(document.createElement(tag), props); for (const k of kids) e.append(k); return e; };
 const short = (a) => (a ? `${a.slice(0, 6)}…${a.slice(-4)}` : "…");
 /** Keep in step with EXAMPLE in test/mask.test.ts. */
-const EXAMPLE = "Name: Rohan Mehta\nEmail: rohan.mehta@example.com\nPhone: +91 98765 43210\nPAN: ABCPM1234K\nAadhaar: 2345 6789 0123\nBank account: 123456789012\nIFSC: ABCD0001234\n\nPlease write a short, polite note asking the applicant to send the last three salary slips for home loan application HL-2041 (INR 12,00,000).";
+const EXAMPLE = "Dear Mr Rohan Mehta,\nYour EMI auto-debit of INR 18,450 for home loan HL-2041 from account 123456789012 (IFSC ABCD0001234) did not go through on 28 September. Please reply to confirm a new date.\nLoans Desk\n\nMy details for the reply:\nPAN: ABCPM1234K\nPhone: +91 98765 43210\nEmail: rohan.mehta@example.com\n\nWrite a short, polite reply to my bank. Quote my details and ask them to retry the debit on 5 October.";
 const PLACEHOLDER = /(<C_[A-Z_]+_\d+>|\[CARD REMOVED\])/;
 /** Friendly names for what client-mask.ts finds: [one, many]. */
 const KIND = {
